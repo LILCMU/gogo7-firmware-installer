@@ -1,503 +1,543 @@
 <!DOCTYPE html>
-<html lang="en" class="">
-  <head>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
-    <title>Install Tasmota</title>
-    <style>
-      div,fieldset,input,select{padding:5px;font-size:1em;}
-      fieldset{background:#4f4f4f;}
-      p{margin:0.5em 0;}
-      input{width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;background:#dddddd;color:#000000;}
-      input[type=checkbox],input[type=radio]{width:1em;margin-right:6px;vertical-align:-1px;}
-      input[type=range]{width:99%;}
-      select{width:100%;background:#dddddd;color:#000000;}
-      textarea{resize:vertical;width:98%;height:318px;padding:5px;overflow:auto;background:#1f1f1f;color:#65c115;}
-      body{text-align:center;font-family:verdana,sans-serif;background:#252525;}
-      td{padding:0px;}
-      button{border:0;border-radius:0.3rem;background:#1fa3ec;color:#faffff;line-height:2.4rem;font-size:1.2rem;width:100%;-webkit-transition-duration:0.4s;transition-duration:0.4s;cursor:pointer;}
-      button:hover{background:#0e70a4;}
-      .bred{background:#d43535;}
-      .bred:hover{background:#931f1f;}
-      .bgrn{background:#47c266;}
-      .bgrn:hover{background:#5aaf6f;}
-      a{color:#1fa3ec;text-decoration:none;}
-      .p{float:left;text-align:left;}
-      .q{float:right;text-align:right;}
-      .r{border-radius:0.3em;padding:2px;margin:6px 2px;}
-      .pick-variant{margin-bottom:16px;}
-      .date_pick{display:inline-block;width: 33%;}
-      #drop-area {
-        border: 2px dashed #ccc;
-        border-radius: 20px;
-        width: 480px;
-        margin: auto;
-        padding: 20px;
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gogoboard Firmware Installer</title>
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+      --primary-color: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text-color: #1e293b;
+      --text-secondary: #64748b;
+      --border-color: #e2e8f0;
+      --radius: 24px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+      --accent-color: #ec4899;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 48px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0 0 40px 0;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: #fff;
+      font-size: 15px;
+      color: var(--text-color);
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px top 50%;
+      background-size: 10px auto;
+      transition: all 0.15s ease;
+    }
+
+    select:hover {
+      border-color: #cbd5e1;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 28px 0;
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .divider::before {
+      margin-right: 12px;
+    }
+
+    .divider::after {
+      margin-left: 12px;
+    }
+
+    .upload-area {
+      border: 2px dashed var(--border-color);
+      border-radius: 8px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #f8fafc;
+    }
+
+    .upload-area:hover,
+    .upload-area.highlight {
+      border-color: var(--primary-color);
+      background-color: rgba(139, 92, 246, 0.03);
+    }
+
+    .upload-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+      opacity: 0.8;
+    }
+
+    .upload-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .upload-text strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .file-info {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background-color: #f1f5f9;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text-color);
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .file-info.show {
+      display: flex;
+    }
+
+    .clear-file {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px 6px;
+      margin-left: 8px;
+      line-height: 1;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .clear-file:hover {
+      color: var(--text-color);
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    esp-web-install-button {
+      display: block;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    esp-web-install-button button {
+      background-image: var(--primary-gradient);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      width: 100%;
+    }
+
+    esp-web-install-button button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    }
+
+    .unsupported {
+      color: #dc2626;
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .helper-text {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #f8fafc;
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: left;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .helper-icon {
+      flex-shrink: 0;
+      color: var(--primary-color);
+      opacity: 0.8;
+    }
+
+    .instructions {
+      text-align: left;
+      background: linear-gradient(to right, #f8fafc, #f1f5f9);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--text-color);
+      overflow: hidden;
+    }
+
+    .instructions summary {
+      padding: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .instructions summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .instructions summary::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid var(--text-secondary);
+      border-bottom: 2px solid var(--text-secondary);
+      transform: rotate(45deg);
+      transition: transform 0.2s ease;
+      margin-right: 6px;
+      margin-top: -3px;
+    }
+
+    .instructions[open] summary::after {
+      transform: rotate(225deg);
+      margin-top: 4px;
+    }
+
+    .instructions-content {
+      padding: 0 16px 16px 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .instructions ol {
+      margin: 0;
+      padding-left: 20px;
+      margin-top: 12px;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+    }
+
+    .instructions img {
+      display: block;
+      max-width: 100%;
+      margin: 12px auto 0;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .helper-text strong {
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10.1.1/dist/web/install-button.js?module"></script>
+  <script>
+    var virtual_manifest = {
+      "name": "",
+      "version": "",
+      "new_install_prompt_erase": true,
+      "builds": [
+        { "chipFamily": "ESP32", "parts": [{ "path": "", "offset": 0 }] },
+        { "chipFamily": "ESP32-C2", "parts": [{ "path": "", "offset": 0 }] },
+        { "chipFamily": "ESP32-C3", "parts": [{ "path": "", "offset": 0 }] },
+        { "chipFamily": "ESP32-S2", "parts": [{ "path": "", "offset": 0 }] },
+        { "chipFamily": "ESP32-S3", "parts": [{ "path": "", "offset": 0 }] },
+        { "chipFamily": "ESP8266", "parts": [{ "path": "", "offset": 0 }] }
+      ]
+    };
+
+    function makeVariantSelector(data) {
+      if (data.length == 0) {
+        return false;
       }
-      #drop-area.highlight {
-        border-color: #1fa3ec;
+      const sel = document.querySelector("#pick-variant-selector");
+      while (sel.firstChild) {
+        sel.removeChild(sel.firstChild);
       }
-    </style>
-    <script
-      type="module"
-      src="https://unpkg.com/tasmota-esp-web-tools@8.1.15/dist/web/install-button.js?module"
-    ></script>
-    <!-- <script type="module">import * as Module from "./js/tasmota_gh_helper.js"</script> -->
-    <script>
 
-        var releases = null;
-        var date_filter = null;
-        var build_filter = ["d","r"];
-        var local_file = null
-        var virtual_manifest = {"name": "","version": "","new_install_prompt_erase": true,"builds": [
-          { "chipFamily": "ESP32","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-C2","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-C3","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-C5","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-C6","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-C61","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-P4","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-S2","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP32-S3","parts": [{ "path": "", "offset": 0 }]},
-          { "chipFamily": "ESP8266","parts": [{ "path": "", "offset": 0 }]}
-        ]};
-
-
-        function DateIsNotSelected(date){
-            let year = document.querySelector("#pick-year-selector").value;
-            let month = document.querySelector("#pick-month-selector").value;
-            let day = document.querySelector("#pick-day-selector").value;
-            let data = date.split("-");
-            if(year != "all" && year != data[0])
-            {
-                return true;
-            }
-            if(month != "all" && month != data[1])
-            {
-                return true;
-            }
-            if(day != "all" && day != data[2])
-            {
-                return true;
-            }
-            return false;
+      for (opt_group in data) {
+        var og = document.createElement('optgroup');
+        og.label = opt_group;
+        sel.appendChild(og);
+        for (fw of data[opt_group]) {
+          var opt = document.createElement('option');
+          opt.label = fw['name'];
+          opt.value = fw['path'];
+          og.appendChild(opt);
         }
+      }
+      if (sel.options.length > 0) {
+        sel.selectedIndex = 0;
+        const button = document.querySelector("esp-web-install-button");
+        button.manifest = sel.value;
+      }
+      return true;
+    }
 
-        function BuildTypeNotSelected(type){
-          if(build_filter.includes(type)){
-            return false;
-          }
-          return true;
-        }
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
-        function makeReleaseSelector(data){
-            let sel=document.querySelector("#pick-release-selector");
-            while(sel.childElementCount!=0){
-              sel.removeChild(sel.childNodes[0]);
-            }
-            let lines = data.split("\n").reverse();
-            console.log(data);
-            var duplicates = [];
-            for (opt_group of lines){
-                if (opt_group.length < 10) continue;
-                if(duplicates.includes(opt_group)){
-                  continue;
-                }
-                duplicates.push(opt_group);
-                var og=document.createElement('option');
-                const tag_data = opt_group.split(".");
-                if(DateIsNotSelected(tag_data[0])){
-                  continue;
-                }
-                if(BuildTypeNotSelected(tag_data[1])){
-                  continue;
-                }
-                og.label = tag_data[0] + "  (commit:" + tag_data[2].substring(0,8) + "...)";
-                og.value = opt_group;
+    function highlight(e) {
+      document.querySelector('.upload-area').classList.add('highlight');
+    }
 
-                var build = "Pre-release:\n"
-                if(tag_data=="r"){
-                  build = "Release:\n"
-                }
-                og.title = build;
-                og.title += "Build date: " + tag_data[0] + "\n";
-                og.title += "Commit: " + tag_data[2] + "\n";
+    function unhighlight(e) {
+      document.querySelector('.upload-area').classList.remove('highlight');
+    }
 
-                sel.appendChild(og);
-                // console.log(opt_group,opt_group.length,data[opt_group]);
-            }
-            sel.addEventListener("change", () => {
-               initVariantSelector(sel.value);
-            });
-        }
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      handleFiles(files);
+    }
 
-        function makeDateFilter(data){
-            let lines = data.split("\n");
-            date_filter = {};
-            for(line of lines){
-                let date = (line.split(".")[0]).split("-");
-                let year = date[0];
-                let month = date[1];
-                let day = date[2];
+    function clearUploadedFile() {
+      const fileInfo = document.querySelector('.file-info');
+      fileInfo.classList.remove('show');
 
-                if(year in date_filter == false){
-                    date_filter[year] = {};
-                }
-                if(month in date_filter[year] == false){
-                    date_filter[year][month] = [];
-                }
-                if(date_filter[year][month].includes(day) == false){
-                    date_filter[year][month].push(day);
-                }
-            }
-        }
+      const fileInput = document.querySelector('#file-input');
+      fileInput.value = '';
 
-        function makeYearSelector(){
-            let first=document.createElement('option');
-            first.label = "all";
-            first.value = "all";
-            let sel=document.querySelector("#pick-year-selector");
-            while(sel.childElementCount!=0){
-                sel.removeChild(sel.childNodes[0]);
-            }
-            sel.appendChild(first);
-            for(const [year,v] of Object.entries(date_filter)){
-                if(year == ""){
-                        continue;
-                    }
-                var o=document.createElement('option');
-                o.label = year;
-                o.value = year;
-                sel.appendChild(o);
-            }
-            sel.addEventListener("change", () => {
-                makeMonthSelector(sel.value);
-                let month = document.querySelector("#pick-month-selector");
-                makeDaySelector(sel.value,month.value);
-                makeReleaseSelector(releases);
-            });
-        }
+      const button = document.querySelector("esp-web-install-button");
+      button.firmwareFile = null;
 
-        function makeMonthSelector(year){
-            let first=document.createElement('option');
-            first.label = "all";
-            first.value = "all";
-            let sel=document.querySelector("#pick-month-selector");
-            while(sel.childElementCount!=0){
-                sel.removeChild(sel.childNodes[0]);
-            }
-            sel.appendChild(first);
-            if(year == null || year == "all" ){
-                return;
-            }
-            for(const [month,v] of Object.entries(date_filter[year])){
-                var o=document.createElement('option');
-                o.label = month;
-                o.value = month;
-                sel.appendChild(o);
-            }
-            sel.addEventListener("change", () => {
-                let year = document.querySelector("#pick-year-selector");
-                makeDaySelector(year.value,sel.value);
-                makeReleaseSelector(releases);
-            });
-        }
+      // Re-select dropdown if available
+      const selectEl = document.querySelector("#pick-variant-selector");
+      if (selectEl.options.length > 0) {
+        selectEl.selectedIndex = 0;
+        button.manifest = selectEl.value;
+      }
+    }
 
-        function makeDaySelector(year,month){
-            let first=document.createElement('option');
-            first.label = "all";
-            first.value = "all";
-            let sel=document.querySelector("#pick-day-selector");
-            while(sel.childElementCount!=0){
-                sel.removeChild(sel.childNodes[0]);
-            }
-            sel.appendChild(first);
-            if(year == null || month == null || year == "all" || month == "all"){
-                return;
-            }
-            for(day of date_filter[year][month]){
-                var o=document.createElement('option');
-                o.label = day;
-                o.value = day;
-                sel.appendChild(o);
-            }
-            sel.addEventListener("change", () => {
-                makeReleaseSelector(releases);
-            });
-        }
+    function handleFiles(files) {
+      if (files.length === 0) return;
 
-        function makeDateSelector(data){
-          if(releases == null){
-            releases = data;
-          }
-          if(date_filter == null){
-            makeDateFilter(data);
-          }
-          makeYearSelector();
-          makeMonthSelector();
-          makeDaySelector();
-          let radio = document.getElementsByClassName("build_type_select");
-          console.log(radio);
-          for(el of radio){
-            console.log(el);
-            el.addEventListener("click", () => {
-              let btn = document.querySelector('input[name="build_type"]:checked')
-              build_filter = [btn.value];
-              if(btn.value == "a"){
-                build_filter = ["r","d"];
-              }
-              makeReleaseSelector(releases);
-            });
-          }
+      const file = files[0];
+      if (!file.name.endsWith('.bin')) {
+        alert('Please select a .bin file');
+        return;
+      }
 
-          makeReleaseSelector(data);
-        }
+      // Clear dropdown selection
+      const selectEl = document.querySelector("#pick-variant-selector");
+      selectEl.selectedIndex = -1;
 
-        function filterByYear(year){
-            makeDateSelector(releases);
-        }
+      // Show file info with clear button
+      const fileInfo = document.querySelector('.file-info');
+      fileInfo.innerHTML = `<span>${file.name}</span><button class="clear-file" onclick="clearUploadedFile()" title="Clear file">✕</button>`;
+      fileInfo.classList.add('show');
 
-        function useFallback(){
-            let els = document.getElementsByClassName("needs_cors");
-            for(el of els){
-              console.log(el);
-              el.setAttribute("style","visibility: collapse;");
-            }
-            let sel=document.querySelector("#pick-release-selector");
-            console.log(sel)
-            var el = document.createElement('p');
-            el.innerHTML = "To access our GitHub releases page and directly flash firmware binaries<br>from there including older versions<br>you have to turn off CORS in your browser.<br>(i.e. with browser extension: CORS unblock)";
-            sel.replaceWith(el);
-            fetch('https://raw.githubusercontent.com/tasmota/install/firmware/manifests.json')
-            .then(response => response.json())
-            .then(data => makeVariantSelector(data));
-        }
+      // Set up button with custom file
+      const button = document.querySelector("esp-web-install-button");
+      virtual_manifest.name = file.name;
+      button.manifest = JSON.stringify(virtual_manifest);
+      button.firmwareFile = file;
+    }
 
-        function getLatestTag(){
-             fetch('https://raw.githubusercontent.com/tasmota/install/firmware/tag_latest.txt')
-            .then(x => x.text())
-            .then(t =>testCORS(t));
-        }
+    function openFileDialog() {
+      document.querySelector('#file-input').click();
+    }
 
-        async function testCORS(t){
-          try{
-            const resp = await fetch('https://github.com/tasmota/install/releases/download/'+ t + '/manifests_release.json', {mode:"cors"
-            });
-            console.log(resp);
-          }
-          catch(error){
-            console.log("CORS is blocking");
-            useFallback();
-            return;
-          }
-          console.log("CORS is not blocking");
-          initVariantSelector(t);
-          fetch('https://raw.githubusercontent.com/tasmota/install/firmware/tag.txt')
-          .then(x => x.text())
-          .then(t => {makeReleaseSelector(t,"all"); makeDateSelector(t);})
-        }
+    window.addEventListener("load", function (event) {
+      // Load manifests
+      fetch('manifests.json')
+        .then(response => response.json())
+        .then(data => makeVariantSelector(data));
 
-        function initVariantSelector(tag){
-            fetch('https://github.com/tasmota/install/releases/download/'+ tag + '/manifests_release.json')
-            .then(response => response.json())
-            .then(data => makeVariantSelector(data));
-            getFirmwareVersion(tag);
-        }
+      // Dropdown change handler
+      const selectEl = document.querySelector("#pick-variant-selector");
+      const button = document.querySelector("esp-web-install-button");
+      selectEl.addEventListener("change", () => {
+        // Clear file upload when dropdown changes
+        const fileInfo = document.querySelector('.file-info');
+        fileInfo.classList.remove('show');
+        button.firmwareFile = null;
+        button.manifest = selectEl.value;
+      });
 
-        function makeVariantSelector(data){
-            if(data.length == 0){
-              console.log(data);
-              return false;
-            }
-            const sel=document.querySelector("#pick-variant-selector");
-            while (sel.firstChild) {
-              sel.removeChild(sel.firstChild);
-            }
+      // File input change handler
+      const fileInput = document.querySelector('#file-input');
+      fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+      });
 
-            console.log(data);
-            for (opt_group in data){
-                var og=document.createElement('optgroup');
-                og.label = opt_group;
-                sel.appendChild(og);
-                console.log(opt_group,data[opt_group]);
-                let firmware_label = document.querySelector("#firmware-version");
-                for (fw of data[opt_group]){
-                    // console.log(data[opt_group][fw]);
-                    var opt=document.createElement('option');
-                    opt.label = fw['name'];
-                    let version = fw['version'];
-                    if(version == undefined){
-                      //firmware_label.innerHTML = "&nbsp;";
-                    }
-                    else{
-                      firmware_label.innerText = version;
-                    }
-                    opt.value = fw['path'];
-                    opt.title = "Supported chipfamilies:\n"
-                    for (chipFamily of fw['chipFamilies']){
-                        opt.title += chipFamily + "\n";
-                    }
-                    console.log( opt.value);
-                    og.appendChild(opt);
-                }
-            }
-            return true;
-        }
-
-        function getFirmwareVersion(tag){
-            let commit = tag.split(".")[2];
-            console.log("Commit:____________",commit);
-            fetch("https://raw.githubusercontent.com/arendst/Tasmota/"+commit+"/tasmota/include/tasmota_version.h").then(x=>x.text()).then(t=>printFirmwareVersion(t))
-        }
-
-        function printFirmwareVersion(text_data){
-            for(line of text_data.split("\n")){
-                if(line.includes("const uint32_t VERSION =")){
-                    console.log("Line:____________",line);
-                    let fw_name = line.split("//")[1];
-                    let firmware_label = document.querySelector("#firmware-version");
-                    firmware_label.innerHTML = fw_name.trim();
-                }
-            }
-        }
-
-        function openFileDialog(){
-          let input = document.createElement('input');
-          input.type = 'file';
-          input.onchange = _ => {
-                    handleFiles(input.files);
-                };
-          input.click();
-        }
-
-        function preventDefaults (e) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-
-        function highlight(e) {
-          dropArea.classList.add('highlight');
-        }
-
-        function unhighlight(e) {
-          dropArea.classList.remove('active');
-        }
-
-        function handleDrop(e) {
-          var dt = e.dataTransfer;
-          var files = dt.files;
-          handleFiles(files);
-        }
-
-        function handleFiles(files) {
-          files = [...files];
-          console.log(files);
-          document.getElementById("URL_based_input").style.display = "none";
-          document.getElementById("file_upload_infotext").innerHTML = "You can flash your provided factory firmware at offset 0 by clicking the CONNECT button above.";
-          document.getElementById("dropped_firmware").innerText = files[0].name;
-          const button = document.querySelector("esp-web-install-button");
-          virtual_manifest.name = files[0].name;
-          button.manifest = JSON.stringify(virtual_manifest);
-          button.firmwareFile = files[0];
-        }
-
-        function prepareDropZone(){
-          ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                          dropArea.addEventListener(eventName, preventDefaults, false);
-                          document.body.addEventListener(eventName, preventDefaults, false);
-                        });
-          ['dragenter', 'dragover'].forEach(eventName => {
-                          dropArea.addEventListener(eventName, highlight, false);
-                        });
-          ['dragleave', 'drop'].forEach(eventName => {
-                          dropArea.addEventListener(eventName, unhighlight, false);
-                        });
-          dropArea.addEventListener('drop', handleDrop, false);
-        }
-
-        window.addEventListener("load", function(event) {
-            window.dropArea = document.getElementById("drop-area");
-            prepareDropZone();
-            getLatestTag();
-            try{
-                const button = document.querySelector("esp-web-install-button");
-                button.overrides = {
-                  checkSameFirmware(manifest, improvInfo) {
-                    const manifestFirmware = manifest.name.toLowerCase();
-                    const deviceFirmware = improvInfo.firmware.toLowerCase();
-                    return manifestFirmware.includes(deviceFirmware);
-                  }
-                };
-                console.log(button.shadowRoot.firstChild.name);
-                if(button.shadowRoot.firstChild.name == 'activate'){
-                    //success: add the select picker and some info
-                    const selectEl = document.querySelector("#pick-variant-selector");
-                    button.manifest = "https://tasmota.github.io/install/manifest_ext/release.tasmota.manifest.json";
-                    selectEl.addEventListener("change", () => {
-                        button.manifest = selectEl.value;
-                        console.log(button.manifest);
-                    });
-                }
-            }
-            catch(e){
-                console.log(e);
-            }
-        },{ once: true });
-
+      // Drag and drop handlers
+      const uploadArea = document.querySelector('.upload-area');
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+      });
+      ['dragenter', 'dragover'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, highlight, false);
+      });
+      ['dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, unhighlight, false);
+      });
+      uploadArea.addEventListener('drop', handleDrop, false);
+      uploadArea.addEventListener('click', openFileDialog);
+    }, { once: true });
   </script>
-  </head>
-  <body>
-    <div style='display:inline-block;color:#eaeaea;min-width:340px;'>
+</head>
 
-    <h1>Install Tasmota</h1>
+<body>
+  <div class="container">
+    <h1>Gogoboard Installer</h1>
 
-    <div class='pick-variant'>
-    <ol style='text-align:left'>
-        <li>Connect the ESP device to your computer</br>using USB or serial-to-USB adapter</li></br>
-        <li>Select the firmware variant suitable for</br>your device</li></br>
-        <li>Hit "Install" and select the correct port</br>or find help if <a href="https://tasmota.github.io/docs/Getting-Started/" target='_blank' style='color:#aaa;'>no device found</a></li>
-        </ol>
-        </br>
-      </br>
-      <div id="URL_based_input" class="collapsible">
-        <select id="pick-variant-selector"></select>
-        <p id="firmware-version"></p>
-        <select id="pick-release-selector"></select>
-        </br></br>
-        <p class = "needs_cors">Filter by date:</p>
-        <span><select class = "date_pick needs_cors" id="pick-year-selector"></select><select class = "date_pick needs_cors" id="pick-month-selector"></select><select class = "date_pick needs_cors" id="pick-day-selector"></select></span>
-        <p>
-        <p class = "needs_cors"><br>Filter by type:<br>
-        <input type="radio" name="build_type" value="r" id="check1" class="build_type_select">
-        <label for="check1">Release</label>
-        <input type="radio" name="build_type" value="d" id="check2" class="build_type_select">
-        <label for="check2">Development</label>
-        <input type="radio" name="build_type" value="a" id="check3" class="build_type_select" checked>
-        <label for="check3">All</label></p>
+    <div class="control-group">
+      <label>Select Firmware</label>
+      <select id="pick-variant-selector">
+        <option>Loading...</option>
+      </select>
+    </div>
+
+    <div class="divider">or</div>
+
+    <div class="control-group">
+      <label>Upload Local File</label>
+      <div class="upload-area">
+        <div class="upload-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <div class="upload-text">
+          <strong>Click to browse</strong> or drop .bin file
+        </div>
       </div>
-      </br>
-      <esp-web-install-button id="inst" style='text-align:center'>
-        <i slot="unsupported">
-          Your browser does not support Web Serial.</br>Open this page in Google Chrome or</br>Microsoft Edge instead
-          <span class="not-supported-i hidden">(but not on your iOS device)</span>.
-        </i>
-      </esp-web-install-button>
-     </p>
-    </div>
-    <div id="drop-area">
-      <form class="my-form">
-      <p id="file_upload_infotext">Upload factory firmware with the file dialog or by dragging and dropping onto the dashed region</p>
-      <!-- <input type="file" id="fileElem" accept=".bin" onchange="handleFiles(this.files)" class="button"> -->
-      <p id="dropped_firmware"></p>
-      </form>
-    </div>
-    <h1>&#8593;</h1>
-    <button id="fileElem" accept=".bin" onclick="openFileDialog()">Upload factory.bin</button>
-    <div style='text-align:right;font-size:11px;'>
-      <hr/>
-      <a href="https://esphome.github.io/esp-web-tools/" target='_blank' style='color:#aaa;'>Tasmota Installer inspired by ESP Web Tools</a>
+      <div class="file-info"></div>
+      <input type="file" id="file-input" accept=".bin">
     </div>
 
+    <details class="instructions">
+      <summary>How to connect ?</summary>
+      <div class="instructions-content">
+        <ol>
+          <li>Connect the board to your computer via USB.</li>
+          <li>Press and hold the small button shown below.</li>
+          <li>While holding the button, switch the board ON.</li>
+        </ol>
+        <img src="assets/boot_button.png" alt="Boot button location">
+      </div>
+    </details>
+
+    <esp-web-install-button id="inst">
+      <i slot="unsupported" class="unsupported">
+        Your browser does not support Web Serial. Please use Google Chrome or Microsoft Edge.
+      </i>
+    </esp-web-install-button>
+
+    <div class="helper-text">
+      <div class="helper-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </div>
+      <div>
+        <strong>Select USB device</strong><br>
+        Look for: "ESP32-S3" or "USB JTAG"
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

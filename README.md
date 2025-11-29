@@ -1,24 +1,26 @@
-[![Tasmota install](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+# Gogoboard 7 Firmware Installer
 
-![Tasmota logo](https://github.com/arendst/Tasmota/blob/development/tools/logo/TASMOTA_FullLogo_Vector.svg#gh-light-mode-only)![Tasmota logo](https://github.com/arendst/Tasmota/blob/development/tools/logo/TASMOTA_FullLogo_Vector_White.svg#gh-dark-mode-only)
+This is a web-based firmware installer for the Gogoboard 7. It allows users to easily flash the latest firmware to their devices directly from the browser using Web Serial API.
 
-Alternative firmware for ESP8266/ESP32 based devices with **easy configuration using webUI, OTA updates, automation using timers or rules, expandability and entirely local control over MQTT, HTTP, Serial or KNX**.
+**Use the Web Installer: [https://install-firmware.gogoboard.org](https://install-firmware.gogoboard.org)**
 
-If you like **Tasmota**, give it a star, or fork it and contribute!
+## Features
 
-[![GitHub stars](https://img.shields.io/github/stars/arendst/Tasmota.svg?style=social&label=Star)](https://github.com/arendst/Tasmota/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/arendst/Tasmota.svg?style=social&label=Fork)](https://github.com/arendst/Tasmota/network)
-[![donate](https://img.shields.io/badge/donate-PayPal-blue.svg)](https://paypal.me/tasmota)
+-   **Easy Installation**: Connect your device and click "Install".
+-   **Multiple Versions**: Support for stable releases and pre-release previews.
+-   **Automatic Manifest Generation**: Python script to fetch the latest firmware assets from GitHub.
 
-See [CHANGELOG](https://github.com/arendst/Tasmota/blob/development/CHANGELOG.md) for changes since last release.
 
-Easy initial installation of Tasmota via **[Tasmota WebInstaller](https://tasmota.github.io/install/)**. The actual development / release builds and the unofficial firmwares are available. It is important to note that development binaries are based on the current codebase. These commits are tested as much as is possible and are typically quite stable. However, it is infeasible to test on the hundreds of different types of devices with all the available configuration options permitted.
-The unofficial special build variants are **not** tested nor supported. Dont blame anyone when using ;-)
+## Project Structure
 
-## Disclaimer
+-   `index.html`: The main web interface.
+-   `gen_manifest.py`: Script to fetch firmware and generate manifests.
+-   `manifests.json`: Configuration file listing available firmware versions.
+-   `firmware/`: Directory storing downloaded firmware binaries.
+-   `manifest/`: Directory storing generated manifest JSON files.
+-   `assets/`: Images and other static assets.
+-   `js/`: JavaScript helper files.
 
-:warning: **DANGER OF ELECTROCUTION** :warning:
+## License
 
-If your device connects to mains electricity (AC power) there is danger of electrocution if not installed properly. If you don't know how to install it, please call an electrician (***Beware:*** certain countries prohibit installation without a licensed electrician present). Remember: _**SAFETY FIRST**_. It is not worth the risk to yourself, your family and your home if you don't know exactly what you are doing. Never tinker or try to flash a device using the serial programming interface while it is connected to MAINS ELECTRICITY (AC power).
-
-We don't take any responsibility nor liability for using this software nor for the installation or any tips, advice, videos, etc. given by any member of this site or any related site.
+[MIT License](LICENSE)

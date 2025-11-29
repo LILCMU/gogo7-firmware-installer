@@ -1,0 +1,17 @@
+{
+    "name": "gogo-co-firmware-huskylens-dev.factory.bin (version-huskylens)",
+    "version": "version-huskylens",
+    "new_install_prompt_erase": true,
+    "builds": [
+        {
+            "chipFamily": "ESP32-C3",
+            "improv": false,
+            "parts": [
+                {
+                    "path": "../firmware/gogo-co-firmware-huskylens-dev.factory.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ]
+}
