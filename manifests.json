@@ -29,6 +29,14 @@
     ],
     "Preview": [
         {
+            "path": "manifest/preview_version-something_gogo-firmware-st-dev.factory.bin.manifest.json",
+            "name": "pre release ",
+            "chipFamilies": [
+                "ESP32-S3"
+            ],
+            "features": {}
+        },
+        {
             "path": "manifest/preview_version-huskylens_gogo-firmware-huskylens-dev.factory.bin.manifest.json",
             "name": "GoGo Board 7 firmware with Huskylens ",
             "chipFamilies": [

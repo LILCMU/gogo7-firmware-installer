@@ -1,0 +1,17 @@
+{
+    "name": "gogo-firmware-st-dev.factory.bin (version-something)",
+    "version": "version-something",
+    "new_install_prompt_erase": true,
+    "builds": [
+        {
+            "chipFamily": "ESP32-S3",
+            "improv": false,
+            "parts": [
+                {
+                    "path": "../firmware/gogo-firmware-st-dev.factory.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ]
+}
