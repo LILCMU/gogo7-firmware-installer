@@ -422,11 +422,22 @@
       fileInfo.innerHTML = `<span>${file.name}</span><button class="clear-file" onclick="clearUploadedFile()" title="Clear file">✕</button>`;
       fileInfo.classList.add('show');
 
-      // Set up button with custom file
-      const button = document.querySelector("esp-web-install-button");
+      // Create Blob URL for the firmware file
+      const fileUrl = URL.createObjectURL(file);
+
+      // Update virtual manifest
       virtual_manifest.name = file.name;
-      button.manifest = JSON.stringify(virtual_manifest);
-      button.firmwareFile = file;
+      virtual_manifest.builds.forEach(build => {
+        build.parts[0].path = fileUrl;
+      });
+
+      // Create Blob URL for the manifest
+      const manifestBlob = new Blob([JSON.stringify(virtual_manifest)], { type: "application/json" });
+      const manifestUrl = URL.createObjectURL(manifestBlob);
+
+      // Set button manifest
+      const button = document.querySelector("esp-web-install-button");
+      button.manifest = manifestUrl;
     }
 
     function openFileDialog() {
