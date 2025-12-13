@@ -27,22 +27,5 @@
             "features": {}
         }
     ],
-    "Preview": [
-        {
-            "path": "manifest/preview_version-huskylens_gogo-firmware-huskylens-dev.factory.bin.manifest.json",
-            "name": "GoGo Board 7 firmware with Huskylens ",
-            "chipFamilies": [
-                "ESP32-S3"
-            ],
-            "features": {}
-        },
-        {
-            "path": "manifest/preview_version-huskylens_gogo-co-firmware-huskylens-dev.factory.bin.manifest.json",
-            "name": "GoGo Board 7 firmware with Huskylens  (C3)",
-            "chipFamilies": [
-                "ESP32-C3"
-            ],
-            "features": {}
-        }
-    ]
+    "Preview": []
 }
