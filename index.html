@@ -65,6 +65,12 @@
       margin-bottom: 20px;
     }
 
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     label {
       display: block;
       font-size: 13px;
@@ -322,6 +328,29 @@
     input[type="file"] {
       display: none;
     }
+
+    .icon-link {
+      /* margin-top: 20px; */
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .icon-link a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .icon-link a:hover {
+      color: var(--primary-color);
+      background-color: rgba(139, 92, 246, 0.05);
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LR2ENWTGMR"></script>
   <script>
@@ -331,7 +360,8 @@
 
     gtag('config', 'G-LR2ENWTGMR');
   </script>
-  <script type="module" src="https://cdn.jsdelivr.net/gh/lilcmu/esp-web-tools@10.1.3/dist/web/install-button.js?module"></script>
+  <script type="module"
+    src="https://cdn.jsdelivr.net/gh/lilcmu/esp-web-tools@10.1.3/dist/web/install-button.js?module"></script>
   <script>
     var virtual_manifest = {
       "name": "",
@@ -497,7 +527,19 @@
     <h1>Gogoboard Installer</h1>
 
     <div class="control-group">
-      <label>Select Firmware</label>
+      <div class="flex">
+        <label>Select Firmware</label>
+        <div class="icon-link">
+          <a href="https://github.com/LILCMU/gogo7-firmware/releases" target="_blank" rel="noopener"
+            title="Older Releases">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
       <select id="pick-variant-selector">
         <option>Loading...</option>
       </select>
