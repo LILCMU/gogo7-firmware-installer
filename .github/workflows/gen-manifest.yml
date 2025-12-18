@@ -5,6 +5,10 @@ on:
   repository_dispatch:
     types: [firmware-release]
 
+concurrency:
+  group: gen-manifest
+  cancel-in-progress: true
+
 jobs:
   gen-manifest:
     runs-on: ubuntu-latest
@@ -26,5 +30,5 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add firmware/ manifest/ manifests.json
+          git add firmware/ manifest/ manifests.json tag_latest.txt
           git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update firmware binaries and manifest" && git push)
