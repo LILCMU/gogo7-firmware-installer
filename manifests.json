@@ -1,8 +1,8 @@
 {
-    "Gogoboard 7": [
+    "GoGo Board 7": [
         {
             "path": "manifest/gogo_s3.manifest.json",
-            "name": "Gogoboard 7 Firmware",
+            "name": "GoGo Board 7 Firmware",
             "chipFamilies": [
                 "ESP32-S3"
             ],

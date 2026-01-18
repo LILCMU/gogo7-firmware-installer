@@ -59,7 +59,7 @@ def gen_manifest():
         os.makedirs(MANIFEST_DIR)
 
     manifests_data = {
-        "Gogoboard 7": [],
+        "GoGo Board 7": [],
         "Co-Processor": [],
         "Preview": []
     }
@@ -92,7 +92,7 @@ def gen_manifest():
             manifest_path = os.path.join(MANIFEST_DIR, manifest_filename)
             
             manifest_s3 = {
-                "name": f"Gogoboard 7 Firmware ({version})",
+                "name": f"GoGo Board 7 Firmware ({version})",
                 "version": version,
                 "new_install_prompt_erase": True,
                 "builds": [{
@@ -104,9 +104,9 @@ def gen_manifest():
             with open(manifest_path, 'w') as f:
                 json.dump(manifest_s3, f, indent=4)
             
-            manifests_data["Gogoboard 7"].append({
+            manifests_data["GoGo Board 7"].append({
                 "path": f"{MANIFEST_DIR}/{manifest_filename}",
-                "name": f"Gogoboard 7 Firmware",
+                "name": f"GoGo Board 7 Firmware",
                 "chipFamilies": ["ESP32-S3"],
                 "features": {}
             })

@@ -1,6 +1,6 @@
-# Gogoboard 7 Firmware Installer
+# GoGo Board 7 Firmware Installer
 
-This is a web-based firmware installer for the Gogoboard 7. It allows users to easily flash the latest firmware to their devices directly from the browser using Web Serial API.
+This is a web-based firmware installer for the GoGo Board 7. It allows users to easily flash the latest firmware to their devices directly from the browser using Web Serial API.
 
 **Use the Web Installer: [https://install-firmware.gogoboard.org](https://install-firmware.gogoboard.org)**
 
