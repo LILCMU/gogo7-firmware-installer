@@ -27,5 +27,14 @@
             "features": {}
         }
     ],
-    "Preview": []
+    "Preview": [
+        {
+            "path": "manifest/preview_version-3.0.0_gogo-firmware-v3.0.0-preview.factory.bin.manifest.json",
+            "name": "GoGo Board 7 firmware version 3.0.0 preview ",
+            "chipFamilies": [
+                "ESP32-S3"
+            ],
+            "features": {}
+        }
+    ]
 }
