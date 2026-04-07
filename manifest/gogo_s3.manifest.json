@@ -1,6 +1,6 @@
 {
-    "name": "GoGo Board 7 Firmware (version-3.2.3)",
-    "version": "version-3.2.3",
+    "name": "GoGo Board 7 Firmware (version-3.2.4)",
+    "version": "version-3.2.4",
     "new_install_prompt_erase": true,
     "builds": [
         {
@@ -8,7 +8,7 @@
             "improv": false,
             "parts": [
                 {
-                    "path": "../firmware/gogo-firmware-v3.2.3.factory.bin",
+                    "path": "../firmware/gogo-firmware-v3.2.4.factory.bin",
                     "offset": 0
                 }
             ]
