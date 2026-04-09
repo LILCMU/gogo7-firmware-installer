@@ -1,0 +1,17 @@
+{
+    "name": "gogo-firmware-v3.2.4-preview.bin (version-3.2.4-test)",
+    "version": "version-3.2.4-test",
+    "new_install_prompt_erase": true,
+    "builds": [
+        {
+            "chipFamily": "ESP32-S3",
+            "improv": false,
+            "parts": [
+                {
+                    "path": "../firmware/gogo-firmware-v3.2.4-preview.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ]
+}
