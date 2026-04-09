@@ -35,6 +35,14 @@
                 "ESP32-S3"
             ],
             "features": {}
+        },
+        {
+            "path": "manifest/preview_version-3.2.4-test_gogo-firmware-v3.2.4-preview.factory.bin.manifest.json",
+            "name": "GoGoBoard Firmware v3.2.4-test ",
+            "chipFamilies": [
+                "ESP32-S3"
+            ],
+            "features": {}
         }
     ]
 }
