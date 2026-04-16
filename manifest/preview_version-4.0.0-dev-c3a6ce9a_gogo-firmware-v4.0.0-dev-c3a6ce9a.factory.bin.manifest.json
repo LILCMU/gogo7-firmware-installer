@@ -1,0 +1,17 @@
+{
+    "name": "gogo-firmware-v4.0.0-dev-c3a6ce9a.factory.bin (version-4.0.0-dev-c3a6ce9a)",
+    "version": "version-4.0.0-dev-c3a6ce9a",
+    "new_install_prompt_erase": true,
+    "builds": [
+        {
+            "chipFamily": "ESP32-C3",
+            "improv": false,
+            "parts": [
+                {
+                    "path": "../firmware/gogo-firmware-v4.0.0-dev-c3a6ce9a.factory.bin",
+                    "offset": 0
+                }
+            ]
+        }
+    ]
+}
