@@ -190,10 +190,13 @@ def gen_manifest():
             download_file(asset['browser_download_url'], dest)
             
             # Determine chip family (default to ESP32-S3 if unknown, or try to guess)
-            # For now, let's assume ESP32-S3 for generic bins unless C3 is in name
+            # For now, let's assume ESP32-S3 for generic bins unless C3 firmware variants are in the name
+            # Possible file naming patterns to identify C3 firmware:
+            #   - "gogo-co-firmware-tasmota32c3.factory.bin"
+            #   - "gogo-co-firmware-vernier.factory.bin"
             chip_family = "ESP32-S3"
             name_ext = ""
-            if "c3" in asset['name'].lower() or "-co-" in asset['name'].lower():
+            if "tasmota32c3" in asset['name'].lower() or "vernier" in asset['name'].lower() or "-co-" in asset['name'].lower():
                 chip_family = "ESP32-C3"
                 name_ext = " (C3)"
             
