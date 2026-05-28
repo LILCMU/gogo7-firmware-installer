@@ -194,9 +194,19 @@ def gen_manifest():
             # Possible file naming patterns to identify C3 firmware:
             #   - "gogo-co-firmware-tasmota32c3.factory.bin"
             #   - "gogo-co-firmware-vernier.factory.bin"
+            # Distinguish co-MCU variants in the dropdown label so multiple
+            # co-MCU bins attached to the same pre-release don't render as
+            # identical rows.
             chip_family = "ESP32-S3"
             name_ext = ""
-            if "tasmota32c3" in asset['name'].lower() or "vernier" in asset['name'].lower() or "-co-" in asset['name'].lower():
+            name_lower = asset['name'].lower()
+            if "vernier" in name_lower:
+                chip_family = "ESP32-C3"
+                name_ext = " (Vernier C3)"
+            elif "tasmota32c3" in name_lower:
+                chip_family = "ESP32-C3"
+                name_ext = " (Tasmota C3)"
+            elif "-co-" in name_lower:
                 chip_family = "ESP32-C3"
                 name_ext = " (C3)"
             
