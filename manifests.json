@@ -37,6 +37,14 @@
             "features": {}
         },
         {
+            "path": "manifest/preview_version-4.0.0-dev-77e13278_gogo-co-firmware-vernier.factory.bin.manifest.json",
+            "name": "GoGo Board 7 v4.0.0 dev (77e13278)  (Vernier C3)",
+            "chipFamilies": [
+                "ESP32-C3"
+            ],
+            "features": {}
+        },
+        {
             "path": "manifest/preview_version-4.0.0_gogo-firmware-v4.0.0-preview.factory.bin.manifest.json",
             "name": "GoGo Board 7 firmware version 4.0.0 preview ",
             "chipFamilies": [
