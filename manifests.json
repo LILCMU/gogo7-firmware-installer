@@ -9,24 +9,7 @@
             "features": {}
         }
     ],
-    "Co-Processor": [
-        {
-            "path": "manifest/gogo_c3_tasmota.manifest.json",
-            "name": "Tasmota (C3)",
-            "chipFamilies": [
-                "ESP32-C3"
-            ],
-            "features": {}
-        },
-        {
-            "path": "manifest/gogo_c3_vernier.manifest.json",
-            "name": "Vernier (C3)",
-            "chipFamilies": [
-                "ESP32-C3"
-            ],
-            "features": {}
-        }
-    ],
+    "Co-Processor": [],
     "Preview": [
         {
             "path": "manifest/preview_version-4.0.0-dev-77e13278_gogo-firmware-v4.0.0-dev-77e13278.factory.bin.manifest.json",
