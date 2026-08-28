@@ -29,6 +29,14 @@
     ],
     "Preview": [
         {
+            "path": "manifest/preview_version-4.0.0-hidtext_gogo-firmware-v4.0.0-hidtext-preview.factory.bin.manifest.json",
+            "name": "GoGo Board 7 version 4.0.0 hidtext ",
+            "chipFamilies": [
+                "ESP32-S3"
+            ],
+            "features": {}
+        },
+        {
             "path": "manifest/preview_version-4.0.0-dev-77e13278_gogo-firmware-v4.0.0-dev-77e13278.factory.bin.manifest.json",
             "name": "GoGo Board 7 version 4.0.0 dev (77e13278) ",
             "chipFamilies": [
