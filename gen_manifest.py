@@ -185,8 +185,14 @@ def gen_manifest():
             if not asset['name'].endswith(".bin"):
                 continue
 
-            dest = os.path.join(FIRMWARE_DIR, asset['name'])
-            kept_files.add(asset['name'])
+            # Releases reuse asset names (every co-MCU bin is
+            # "gogo-co-firmware-*.factory.bin", and a "-preview" host bin can
+            # appear on two tags), so a pre-release asset stored under its bare
+            # name would overwrite the stable release's file or another
+            # pre-release's. Prefix it with its tag, like its manifest file.
+            firmware_filename = f"preview_{version}_{asset['name']}"
+            dest = os.path.join(FIRMWARE_DIR, firmware_filename)
+            kept_files.add(firmware_filename)
             download_file(asset['browser_download_url'], dest)
             
             # Determine chip family (default to ESP32-S3 if unknown, or try to guess)
@@ -221,7 +227,7 @@ def gen_manifest():
                 "builds": [{
                     "chipFamily": chip_family,
                     "improv": False,
-                    "parts": [{ "path": f"../{FIRMWARE_DIR}/{asset['name']}", "offset": 0 }]
+                    "parts": [{ "path": f"../{FIRMWARE_DIR}/{firmware_filename}", "offset": 0 }]
                 }]
             }
             with open(manifest_path, 'w') as f:
