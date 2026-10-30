@@ -8,7 +8,7 @@
             "improv": false,
             "parts": [
                 {
-                    "path": "../firmware/gogo-firmware-v4.0.0-hidtext-preview.factory.bin",
+                    "path": "../firmware/preview_version-4.0.0-hidtext_gogo-firmware-v4.0.0-hidtext-preview.factory.bin",
                     "offset": 0
                 }
             ]

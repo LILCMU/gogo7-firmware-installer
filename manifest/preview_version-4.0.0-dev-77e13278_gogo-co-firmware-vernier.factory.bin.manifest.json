@@ -8,7 +8,7 @@
             "improv": false,
             "parts": [
                 {
-                    "path": "../firmware/gogo-co-firmware-vernier.factory.bin",
+                    "path": "../firmware/preview_version-4.0.0-dev-77e13278_gogo-co-firmware-vernier.factory.bin",
                     "offset": 0
                 }
             ]
