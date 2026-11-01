@@ -27,5 +27,30 @@
             "features": {}
         }
     ],
-    "Preview": []
+    "Preview": [
+        {
+            "path": "manifest/preview_version-4.0.0-preview_gogo-firmware-v4.0.0-preview.factory.bin.manifest.json",
+            "name": "GoGo Board 7 version 4.0.0 preview ",
+            "chipFamilies": [
+                "ESP32-S3"
+            ],
+            "features": {}
+        },
+        {
+            "path": "manifest/preview_version-4.0.0-preview_gogo-co-firmware-tasmota32c3.factory.bin.manifest.json",
+            "name": "GoGo Board 7 version 4.0.0 preview  (Tasmota C3)",
+            "chipFamilies": [
+                "ESP32-C3"
+            ],
+            "features": {}
+        },
+        {
+            "path": "manifest/preview_version-4.0.0-preview_gogo-co-firmware-vernier.factory.bin.manifest.json",
+            "name": "GoGo Board 7 version 4.0.0 preview  (Vernier C3)",
+            "chipFamilies": [
+                "ESP32-C3"
+            ],
+            "features": {}
+        }
+    ]
 }
