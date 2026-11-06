@@ -59,14 +59,6 @@
                 "ESP32-S3"
             ],
             "features": {}
-        },
-        {
-            "path": "manifest/preview_version-4.0.0-dev-285856e0_gogo-firmware-v4.0.0-dev-285856e0.factory.bin.manifest.json",
-            "name": "GoGo Board 7 version 4.0.0 dev (285856e0) ",
-            "chipFamilies": [
-                "ESP32-S3"
-            ],
-            "features": {}
         }
     ]
 }
