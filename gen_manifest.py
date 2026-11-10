@@ -1,4 +1,5 @@
 import json
+import re
 import os
 import urllib.request
 import urllib.error
@@ -9,6 +10,25 @@ REPO_OWNER = "LILCMU"
 REPO_NAME = "gogo7-firmware"
 FIRMWARE_DIR = "firmware"
 MANIFEST_DIR = "manifest"
+# version-X.Y.Z-preview is preview 1; version-X.Y.Z-preview-N is preview N.
+PREVIEW_TAG = re.compile(r"^version-(\d+)\.(\d+)\.(\d+)-preview(?:-(\d+))?$")
+FIRST_PREVIEW_NUMBER = 1
+
+
+def preview_rank(tag_name):
+    match = PREVIEW_TAG.match(tag_name)
+    if not match:
+        return None
+    major, minor, patch, number = match.groups()
+    return (int(major), int(minor), int(patch), int(number) if number else FIRST_PREVIEW_NUMBER)
+
+
+def listed_prereleases(releases):
+    """Every pre-release except older previews: the installer offers only the newest preview."""
+    prereleases = [r for r in releases if r['prerelease']]
+    previews = [r for r in prereleases if preview_rank(r['tag_name'])]
+    newest_preview = max(previews, key=lambda r: preview_rank(r['tag_name']), default=None)
+    return [r for r in prereleases if r is newest_preview or not preview_rank(r['tag_name'])]
 
 
 def get_all_releases():
@@ -170,10 +190,7 @@ def gen_manifest():
             })
 
     # Process Pre-releases
-    for release in releases:
-        if not release['prerelease']:
-            continue
-            
+    for release in listed_prereleases(releases):
         version = release['tag_name']
         print(f"Processing pre-release: {version}")
         
