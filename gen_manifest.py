@@ -10,7 +10,6 @@ REPO_OWNER = "LILCMU"
 REPO_NAME = "gogo7-firmware"
 FIRMWARE_DIR = "firmware"
 MANIFEST_DIR = "manifest"
-# version-X.Y.Z-preview is preview 1; version-X.Y.Z-preview-N is preview N.
 PREVIEW_TAG = re.compile(r"^version-(\d+)\.(\d+)\.(\d+)-preview(?:-(\d+))?$")
 FIRST_PREVIEW_NUMBER = 1
 
@@ -23,8 +22,7 @@ def preview_rank(tag_name):
     return (int(major), int(minor), int(patch), int(number) if number else FIRST_PREVIEW_NUMBER)
 
 
-def listed_prereleases(releases):
-    """Every pre-release except older previews: the installer offers only the newest preview."""
+def prereleases_with_newest_preview_only(releases):
     prereleases = [r for r in releases if r['prerelease']]
     previews = [r for r in prereleases if preview_rank(r['tag_name'])]
     newest_preview = max(previews, key=lambda r: preview_rank(r['tag_name']), default=None)
@@ -190,7 +188,7 @@ def gen_manifest():
             })
 
     # Process Pre-releases
-    for release in listed_prereleases(releases):
+    for release in prereleases_with_newest_preview_only(releases):
         version = release['tag_name']
         print(f"Processing pre-release: {version}")
         
